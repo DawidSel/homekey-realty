@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Base ── */
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: #F5F0E8;
+  color: #1C1C1C;
+}
+
+/* Subtelna tekstura szumu */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.4;
+}
+
+/* ── Komponenty wielokrotnego użytku ── */
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-br from-gold to-[#b8915a] text-white font-medium rounded-sm transition-all duration-300;
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(201, 169, 110, 0.4);
+  }
+
+  .section-tag {
+    @apply uppercase tracking-[0.2em] text-[0.7rem];
+  }
+
+  .nav-link {
+    @apply relative text-sm text-stone transition-colors hover:text-charcoal;
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-[-2px] left-0 w-0 h-px bg-gold transition-all duration-300;
+  }
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .stat-border {
+    @apply border-l-2 border-gold pl-4;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(28, 28, 28, 0.15);
+  }
+
+  .gold-line {
+    background: linear-gradient(90deg, transparent, #C9A96E, transparent);
+    height: 1px;
+  }
+
+  /* Walidacja */
+  .input-base {
+    @apply w-full border border-stone/20 bg-cream/50 rounded-sm px-4 py-3 text-sm text-charcoal placeholder-stone/50 transition-all;
+  }
+  .input-base:focus {
+    outline: none;
+    border-color: #C9A96E;
+    box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15);
+  }
+  .input-base.error {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12) !important;
+  }
+
+  /* Placeholdery zdjęć */
+  .prop-img-1 { background: linear-gradient(135deg, #3a3028 0%, #524538 100%); }
+  .prop-img-2 { background: linear-gradient(135deg, #2e3a2e 0%, #3d5040 100%); }
+  .prop-img-3 { background: linear-gradient(135deg, #2a2e3a 0%, #384060 100%); }
+
+  .badge-gold { background: linear-gradient(135deg, #C9A96E, #b8915a); }
+}
